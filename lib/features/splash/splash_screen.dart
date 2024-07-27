@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:voice_chat/core/router/routes.dart';
+import 'package:voice_chat/core/widgets/app_background.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -22,15 +23,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage(
-              'assets/images/splash_background.png',
-            ),
-            fit: BoxFit.fitWidth,
-          ),
-        ),
+      body: AppBackground(
         child: Center(
           child: Column(
             children: [
