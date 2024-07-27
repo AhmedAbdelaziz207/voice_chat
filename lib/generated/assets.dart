@@ -2,8 +2,8 @@
 class Assets {
   Assets._();
 
-  static const String iconsAppLogo = 'assets/icons/app_logo.svg';
-  static const String iconsVoiceChatIcon = 'assets/icons/voice_chat_icon.svg';
+  static const String imagesAppLogo = 'assets/images/app_logo.png';
   static const String imagesSplashBackground = 'assets/images/splash_background.png';
+  static const String imagesVoiceChat = 'assets/images/voice_chat.png';
 
 }

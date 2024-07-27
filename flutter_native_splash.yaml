@@ -60,7 +60,7 @@ flutter_native_splash:
   #image: assets/android12splash.png
 
   # Splash screen background color.
-    color: "#42a5f5"
+#    color: "#42a5f5"
 
   # App icon background color.
   #icon_background_color: "#111111"
@@ -77,9 +77,9 @@ flutter_native_splash:
 
   # The android, ios and web parameters can be used to disable generating a splash screen on a given
   # platform.
-  android: true
-  ios: true
-  web: false
+#  android: false
+#  ios: false
+#  web: false
 
   # Platform specific images can be specified with the following parameters, which will override
   # the respective parameter.  You may specify all, selected, or none of these parameters:

@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:voice_chat/core/router/app_router.dart';
 import 'package:voice_chat/voice_chat.dart';
 
 void main() {
-  runApp(const VoiceChat());
+  AppRouter appRouter = AppRouter();
+  runApp(
+    VoiceChat(
+      appRouter: appRouter,
+    ),
+  );
 }
