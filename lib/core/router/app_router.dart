@@ -5,6 +5,8 @@ import 'package:voice_chat/core/router/routes.dart';
 import 'package:voice_chat/features/login/ui/login_screen.dart';
 import 'package:voice_chat/features/splash/splash_screen.dart';
 
+import '../../features/otp/ui/otp_screen.dart';
+
 class AppRouter {
   Route onGenerateRoute(RouteSettings routeSettings) {
     switch (routeSettings.name) {
@@ -18,6 +20,12 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (context) {
             return const LoginScreen();
+          },
+        );
+      case Routes.otp:
+        return MaterialPageRoute(
+          builder: (context) {
+            return const OTPScreen();
           },
         );
 
