@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:voice_chat/core/router/routes.dart';
+import 'package:voice_chat/features/home/ui/home_screen.dart';
 import 'package:voice_chat/features/login/ui/login_screen.dart';
 import 'package:voice_chat/features/splash/splash_screen.dart';
 
@@ -14,6 +15,12 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (context) {
             return const SplashScreen();
+          },
+        );
+        case Routes.home:
+        return MaterialPageRoute(
+          builder: (context) {
+            return const HomeScreen();
           },
         );
       case Routes.login:

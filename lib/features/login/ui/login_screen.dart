@@ -17,6 +17,7 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppBackground(
+      isDark: false,
       child: SingleChildScrollView(
         child: Column(
           children: [

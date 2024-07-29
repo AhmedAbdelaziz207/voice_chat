@@ -30,9 +30,22 @@ class AppTextStyles {
     fontSize: 21.sp,
     color: AppColors.white,
   );
+
   static final TextStyle otpButton = TextStyle(
     fontSize: 14.sp,
     fontWeight: FontWeight.normal,
     color: AppColors.white,
+  );
+
+  static final TextStyle homeTextStyle = TextStyle(
+    fontSize: 20.sp,
+    fontWeight: FontWeight.w900,
+    color: AppColors.primaryColor,
+  );
+
+  static final TextStyle contactLabelStyle = TextStyle(
+    fontSize: 14.sp,
+    fontWeight: FontWeight.bold,
+    color: AppColors.primaryColor,
   );
 }
