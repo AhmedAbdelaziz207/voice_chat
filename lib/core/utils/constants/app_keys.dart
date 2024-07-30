@@ -1,3 +1,5 @@
+import '../../network/model/user_contact.dart';
+
 class AppKeys{
   static const phoneNumber = "Phone Number ";
   static const enterYourPhoneNumber = "Enter your Phone Number ";
@@ -12,4 +14,59 @@ class AppKeys{
   static const search = "Search";
 
   static const contacts = "Contacts";
+
+
+
+
+
+
+
+  static List<UserContact> userContacts = [
+    UserContact(
+        name: "Abdelaziz  ",
+        imageUrl: "assets/images/contact_image.png"),
+    UserContact(
+        name: "Ahmed", imageUrl: "assets/images/contact_image.png"),
+    UserContact(
+        name: "Ahmed", imageUrl: "assets/images/contact_image.png"),
+    UserContact(
+        name: "Ahmed", imageUrl: "assets/images/contact_image.png"),
+    UserContact(
+        name: "Ahmed", imageUrl: "assets/images/contact_image.png"),
+    UserContact(
+        name: "Ahmed", imageUrl: "assets/images/contact_image.png"),
+    UserContact(
+        name: "Ahmed", imageUrl: "assets/images/contact_image.png"),
+    UserContact(
+        name: "Ahmed", imageUrl: "assets/images/contact_image.png"),
+    UserContact(
+        name: "Ahmed", imageUrl: "assets/images/contact_image.png"),
+    UserContact(
+        name: "Ahmed", imageUrl: "assets/images/contact_image.png"),
+    UserContact(
+        name: "Ahmed", imageUrl: "assets/images/contact_image.png"),
+    UserContact(
+        name: "Abdelaziz  ",
+        imageUrl: "assets/images/contact_image.png"),
+    UserContact(
+        name: "Ahmed", imageUrl: "assets/images/contact_image.png"),
+    UserContact(
+        name: "Ahmed", imageUrl: "assets/images/contact_image.png"),
+    UserContact(
+        name: "Ahmed", imageUrl: "assets/images/contact_image.png"),
+    UserContact(
+        name: "Ahmed", imageUrl: "assets/images/contact_image.png"),
+    UserContact(
+        name: "Ahmed", imageUrl: "assets/images/contact_image.png"),
+    UserContact(
+        name: "Ahmed", imageUrl: "assets/images/contact_image.png"),
+    UserContact(
+        name: "Ahmed", imageUrl: "assets/images/contact_image.png"),
+    UserContact(
+        name: "Ahmed", imageUrl: "assets/images/contact_image.png"),
+    UserContact(
+        name: "Ahmed", imageUrl: "assets/images/contact_image.png"),
+    UserContact(
+        name: "Ahmed", imageUrl: "assets/images/contact_image.png"),
+  ];
 }

@@ -1,68 +1,17 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:voice_chat/core/theming/app_text_styles.dart';
 import 'package:voice_chat/core/utils/constants/app_keys.dart';
 import 'package:voice_chat/core/widgets/app_background.dart';
-import 'package:voice_chat/features/home/ui/widgets/contacts_list_item.dart';
+import 'package:voice_chat/features/home/ui/widgets/home_contacts_gridview_widget.dart';
 import 'package:voice_chat/features/home/ui/widgets/home_groups_title.dart';
 import 'package:voice_chat/features/home/ui/widgets/home_search_widget.dart';
-
-import '../../../core/network/model/user_contact.dart';
+import 'package:voice_chat/features/home/ui/widgets/pinned_contacts_listview_widget.dart';
 import '../../../core/theming/app_colors.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
-  static List<UserContact> userContacts = [
-    UserContact(
-        name: "Abdelaziz  ",
-        imageUrl: "assets/images/contact_image.png"),
-    UserContact(
-        name: "Ahmed", imageUrl: "assets/images/contact_image.png"),
-    UserContact(
-        name: "Ahmed", imageUrl: "assets/images/contact_image.png"),
-    UserContact(
-        name: "Ahmed", imageUrl: "assets/images/contact_image.png"),
-    UserContact(
-        name: "Ahmed", imageUrl: "assets/images/contact_image.png"),
-    UserContact(
-        name: "Ahmed", imageUrl: "assets/images/contact_image.png"),
-    UserContact(
-        name: "Ahmed", imageUrl: "assets/images/contact_image.png"),
-    UserContact(
-        name: "Ahmed", imageUrl: "assets/images/contact_image.png"),
-    UserContact(
-        name: "Ahmed", imageUrl: "assets/images/contact_image.png"),
-    UserContact(
-        name: "Ahmed", imageUrl: "assets/images/contact_image.png"),
-    UserContact(
-        name: "Ahmed", imageUrl: "assets/images/contact_image.png"),
-    UserContact(
-        name: "Abdelaziz  ",
-        imageUrl: "assets/images/contact_image.png"),
-    UserContact(
-        name: "Ahmed", imageUrl: "assets/images/contact_image.png"),
-    UserContact(
-        name: "Ahmed", imageUrl: "assets/images/contact_image.png"),
-    UserContact(
-        name: "Ahmed", imageUrl: "assets/images/contact_image.png"),
-    UserContact(
-        name: "Ahmed", imageUrl: "assets/images/contact_image.png"),
-    UserContact(
-        name: "Ahmed", imageUrl: "assets/images/contact_image.png"),
-    UserContact(
-        name: "Ahmed", imageUrl: "assets/images/contact_image.png"),
-    UserContact(
-        name: "Ahmed", imageUrl: "assets/images/contact_image.png"),
-    UserContact(
-        name: "Ahmed", imageUrl: "assets/images/contact_image.png"),
-    UserContact(
-        name: "Ahmed", imageUrl: "assets/images/contact_image.png"),
-    UserContact(
-        name: "Ahmed", imageUrl: "assets/images/contact_image.png"),
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -70,7 +19,7 @@ class HomeScreen extends StatelessWidget {
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         backgroundColor: AppColors.transparent,
-        iconTheme: IconThemeData(color: AppColors.white),
+        iconTheme: const IconThemeData(color: AppColors.white),
         actions: [
           IconButton(
             icon: Icon(Icons.volume_up),
@@ -86,7 +35,7 @@ class HomeScreen extends StatelessWidget {
           ),
         ],
         leading: IconButton(
-          icon: Icon(Icons.menu_sharp),
+          icon: const Icon(Icons.menu_sharp),
           onPressed: () {},
         ),
       ),
@@ -128,41 +77,13 @@ class HomeScreen extends StatelessWidget {
                     SizedBox(
                       height: 30.h,
                     ),
-                    SizedBox(
-                      height: 120.h,
-                      width: double.infinity,
-                      child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemCount: userContacts.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          return ContactsListItem(
-                              userContact: userContacts[index]);
-                        },
-                      ),
-                    ),
+                    const PinnedContactsListViewWidget(),
                     const HomeSearchWidget(),
                     SizedBox(
                       height: 30.h,
                     ),
                     const HomeGroupsTitle(),
-                    SizedBox(
-                      width: double.infinity,
-                      height: 500,
-                      child: GridView.builder(
-                        itemCount: userContacts.length,
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
-                          mainAxisSpacing: 6.0,
-                          crossAxisCount: 5,
-                          childAspectRatio: .8,
-                        ),
-                        itemBuilder: (context, index) {
-                          return ContactsListItem(
-                            userContact: userContacts[index],
-                          );
-                        },
-                      ),
-                    )
+                    const HomeContactsGridviewContacts()
                   ],
                 ),
               ),
