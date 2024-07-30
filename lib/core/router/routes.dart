@@ -9,4 +9,6 @@ class Routes {
 
   static const otp = '/otp';
   static const chat = '/chat';
+
+  static const groups = '/groups';
 }

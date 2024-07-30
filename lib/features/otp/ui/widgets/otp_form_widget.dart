@@ -28,7 +28,7 @@ class OTPFormWidget extends StatelessWidget {
         decoration: BoxDecoration(
             shape: BoxShape.rectangle,
             borderRadius: BorderRadius.circular(8.r),
-            color: AppColors.lightGrey,
+            color: AppColors.white200,
             border: Border.all(color: AppColors.primaryColor)),
         textStyle: AppTextStyles.otpInput);
 
@@ -42,7 +42,7 @@ class OTPFormWidget extends StatelessWidget {
           width: 60.w,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8.r),
-            color: AppColors.lightGrey,
+            color: AppColors.white200,
           ),
           textStyle: AppTextStyles.otpInput),
       validator: validator,

@@ -14,7 +14,7 @@ class HomeSearchWidget extends StatelessWidget {
       child: TextField(
         decoration: InputDecoration(
           filled: true,
-          fillColor: AppColors.lightGrey,
+          fillColor: AppColors.white200,
           hintText: AppKeys.search,
           suffixIcon: const Icon(Icons.search,color: AppColors.grey,),
           hintStyle: AppTextStyles.contactLabelStyle.copyWith(

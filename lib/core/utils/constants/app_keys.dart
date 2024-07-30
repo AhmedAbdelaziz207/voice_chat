@@ -15,6 +15,7 @@ class AppKeys{
 
   static const contacts = "Contacts";
 
+  static const groups = "Groups";
 
 
 
@@ -69,4 +70,5 @@ class AppKeys{
     UserContact(
         name: "Ahmed", imageUrl: "assets/images/contact_image.png"),
   ];
+
 }
