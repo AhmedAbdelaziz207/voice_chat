@@ -6,6 +6,7 @@ import 'package:voice_chat/features/chat/ui/chat_screen.dart';
 import 'package:voice_chat/features/groups/ui/groups_screen.dart';
 import 'package:voice_chat/features/home/ui/home_screen.dart';
 import 'package:voice_chat/features/login/ui/login_screen.dart';
+import 'package:voice_chat/features/otp/logic/otp_cubit.dart';
 import 'package:voice_chat/features/splash/splash_screen.dart';
 
 import '../../features/login/logic/login_cubit.dart';
@@ -40,7 +41,11 @@ class AppRouter {
       case Routes.otp:
         return MaterialPageRoute(
           builder: (context) {
-            return const OTPScreen();
+            String? phoneNumber = routeSettings.arguments as String;
+            return BlocProvider(
+              create: (context) => OtpCubit(),
+              child: OTPScreen(phoneNumber: phoneNumber,),
+            );
           },
         );
       case Routes.chat:

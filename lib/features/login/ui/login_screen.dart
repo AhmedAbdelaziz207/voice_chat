@@ -87,7 +87,11 @@ class LoginScreen extends StatelessWidget {
         contentMessage: state.failedMessage,
       );
     } else if (state is LoginSuccess) {
-      Navigator.pushNamed(context, Routes.otp);
+      Navigator.pushNamed(
+        context,
+        Routes.otp,
+        arguments: state.phoneNumber,
+      );
     }
   }
 }

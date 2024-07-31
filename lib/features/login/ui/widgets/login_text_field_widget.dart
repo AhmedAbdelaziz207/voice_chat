@@ -12,6 +12,7 @@ class LoginTextFieldWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextField(
       controller: context.read<LoginCubit>().loginController,
+      keyboardType:TextInputType.number,
       decoration: InputDecoration(
         contentPadding: EdgeInsets.symmetric(vertical: 4.h),
         border: const OutlineInputBorder(
