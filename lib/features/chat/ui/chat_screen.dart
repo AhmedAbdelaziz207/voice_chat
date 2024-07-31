@@ -1,14 +1,11 @@
-import 'package:audio_waveforms/audio_waveforms.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:voice_chat/core/theming/app_colors.dart';
 import 'package:voice_chat/core/theming/app_text_styles.dart';
 import 'package:voice_chat/core/utils/constants/assets_keys.dart';
 import 'package:voice_chat/core/widgets/app_background.dart';
-import 'package:voice_chat/features/chat/ui/widgets/voice_message_widget.dart';
-import 'package:voice_message_package/voice_message_package.dart';
+import 'package:voice_chat/features/chat/ui/widgets/received_voice_message_widget.dart';
+import 'package:voice_chat/features/chat/ui/widgets/sent_voice_message_widget.dart';
 
 class ChatScreen extends StatelessWidget {
   const ChatScreen({super.key});
@@ -18,14 +15,14 @@ class ChatScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios),
+          icon: const Icon(Icons.arrow_back_ios),
           onPressed: () {
             Navigator.pop(context);
           },
         ),
         title: Row(
           children: [
-            CircleAvatar(
+            const CircleAvatar(
               backgroundImage: AssetImage(AssetsKeys.contactImage),
               radius: 25.0,
             ),
@@ -54,16 +51,15 @@ class ChatScreen extends StatelessWidget {
         isDark: false,
         child: ListView(
           children: [
+            const SizedBox(height: 10,),
+
             Align(
                 alignment: AlignmentDirectional.topStart,
-                child: VoiceMessageWidget(
-                  isSent: false,
-                )),
+                child: ReceivedVoiceMessageWidget()),
+            const SizedBox(height: 10,),
             Align(
                 alignment: AlignmentDirectional.topEnd,
-                child: VoiceMessageWidget(
-                  isSent: true,
-                )),
+                child: SentVoiceMessageWidget()),
           ],
         ),
       ),

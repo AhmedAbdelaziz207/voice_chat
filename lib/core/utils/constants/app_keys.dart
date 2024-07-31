@@ -20,6 +20,7 @@ class AppKeys{
 
 
 
+  static const List<String> countryCodes = ['+20','+62', '+82', '+1'];
 
 
   static List<UserContact> userContacts = [

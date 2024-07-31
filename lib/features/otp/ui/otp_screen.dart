@@ -72,11 +72,16 @@ class _OTPScreenState extends State<OTPScreen> {
                     AppKeys.haveNotConfirmCode,
                     style: AppTextStyles.otpInstruction,
                   ),
-                  Text(
-                    AppKeys.resend,
-                    style: AppTextStyles.otpInstruction.copyWith(
-                        color: AppColors.blue,
-                        fontWeight: FontWeight.bold),
+                  InkWell(
+                    onTap: () {
+
+                    },
+                    child: Text(
+                      AppKeys.resend,
+                      style: AppTextStyles.otpInstruction.copyWith(
+                          color: AppColors.blue,
+                          fontWeight: FontWeight.bold),
+                    ),
                   ),
                 ],
               ),

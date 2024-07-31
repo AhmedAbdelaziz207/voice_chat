@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:voice_chat/core/theming/app_colors.dart';
@@ -11,6 +10,7 @@ class GroupsChatListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
+      onTap: () {},
       leading: CircleAvatar(
         backgroundImage: const AssetImage(AssetsKeys.contactImage),
         radius: 25.0.r,

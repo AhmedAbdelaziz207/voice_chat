@@ -21,18 +21,28 @@ class HomeScreen extends StatelessWidget {
         backgroundColor: AppColors.transparent,
         iconTheme: const IconThemeData(color: AppColors.white),
         actions: [
-          IconButton(
-            icon: Icon(Icons.volume_up),
-            onPressed: () {},
+          SizedBox(
+            width: 30.w,
+            child: IconButton(
+              icon: const Icon(Icons.volume_up),
+              onPressed: () {},
+            ),
           ),
-          IconButton(
-            icon: const Icon(Icons.volume_off),
-            onPressed: () {},
+          SizedBox(
+            width: 30.w,
+            child: IconButton(
+              icon: const Icon(Icons.volume_off),
+              onPressed: () {},
+            ),
           ),
-          IconButton(
-            icon: Icon(Icons.check_box),
-            onPressed: () {},
+          SizedBox(
+            width: 30.w,
+            child: IconButton(
+              icon: Icon(Icons.check_box),
+              onPressed: () {},
+            ),
           ),
+          SizedBox(width: 6.w,)
         ],
         leading: IconButton(
           icon: const Icon(Icons.menu_sharp),
