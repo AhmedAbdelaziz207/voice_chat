@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:voice_chat/core/router/routes.dart';
 import 'package:voice_chat/features/chat/ui/chat_screen.dart';
 import 'package:voice_chat/features/groups/ui/groups_screen.dart';
+import 'package:voice_chat/features/home/logic/home_cubit.dart';
 import 'package:voice_chat/features/home/ui/home_screen.dart';
 import 'package:voice_chat/features/login/ui/login_screen.dart';
 import 'package:voice_chat/features/otp/logic/otp_cubit.dart';
@@ -24,7 +25,10 @@ class AppRouter {
       case Routes.home:
         return MaterialPageRoute(
           builder: (context) {
-            return const HomeScreen();
+            return BlocProvider<HomeCubit>(create: (BuildContext context) {
+              return HomeCubit()..getAllContacts();
+            },
+            child: const HomeScreen());
           },
         );
       case Routes.login:

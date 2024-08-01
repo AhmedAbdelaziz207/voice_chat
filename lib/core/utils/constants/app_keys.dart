@@ -28,48 +28,42 @@ class AppKeys{
         name: "Abdelaziz  ",
         imageUrl: "assets/images/contact_image.png"),
     UserContact(
-        name: "Ahmed", imageUrl: "assets/images/contact_image.png"),
+        name: "Ali", imageUrl: "assets/images/char1_icon.png"),
     UserContact(
-        name: "Ahmed", imageUrl: "assets/images/contact_image.png"),
+        name: "Sara", imageUrl: "assets/images/char2_icon.png"),
     UserContact(
-        name: "Ahmed", imageUrl: "assets/images/contact_image.png"),
+        name: "Aya", imageUrl: "assets/images/char3_icon.png"),
     UserContact(
-        name: "Ahmed", imageUrl: "assets/images/contact_image.png"),
-    UserContact(
-        name: "Ahmed", imageUrl: "assets/images/contact_image.png"),
-    UserContact(
-        name: "Ahmed", imageUrl: "assets/images/contact_image.png"),
-    UserContact(
-        name: "Ahmed", imageUrl: "assets/images/contact_image.png"),
-    UserContact(
-        name: "Ahmed", imageUrl: "assets/images/contact_image.png"),
-    UserContact(
-        name: "Ahmed", imageUrl: "assets/images/contact_image.png"),
-    UserContact(
-        name: "Ahmed", imageUrl: "assets/images/contact_image.png"),
-    UserContact(
+        name: "Salma", imageUrl: "assets/images/char4_icon.png"),
+
+
+     UserContact(
         name: "Abdelaziz  ",
         imageUrl: "assets/images/contact_image.png"),
     UserContact(
-        name: "Ahmed", imageUrl: "assets/images/contact_image.png"),
+        name: "Ali", imageUrl: "assets/images/char1_icon.png"),
     UserContact(
-        name: "Ahmed", imageUrl: "assets/images/contact_image.png"),
+        name: "Sara", imageUrl: "assets/images/char2_icon.png"),
     UserContact(
-        name: "Ahmed", imageUrl: "assets/images/contact_image.png"),
+        name: "Aya", imageUrl: "assets/images/char3_icon.png"),
     UserContact(
-        name: "Ahmed", imageUrl: "assets/images/contact_image.png"),
+        name: "Salma", imageUrl: "assets/images/char4_icon.png"),
+
+
+     UserContact(
+        name: "Abdelaziz  ",
+        imageUrl: "assets/images/contact_image.png"),
     UserContact(
-        name: "Ahmed", imageUrl: "assets/images/contact_image.png"),
+        name: "Ali", imageUrl: "assets/images/char1_icon.png"),
     UserContact(
-        name: "Ahmed", imageUrl: "assets/images/contact_image.png"),
+        name: "Sara", imageUrl: "assets/images/char2_icon.png"),
     UserContact(
-        name: "Ahmed", imageUrl: "assets/images/contact_image.png"),
+        name: "Aya", imageUrl: "assets/images/char3_icon.png"),
     UserContact(
-        name: "Ahmed", imageUrl: "assets/images/contact_image.png"),
-    UserContact(
-        name: "Ahmed", imageUrl: "assets/images/contact_image.png"),
-    UserContact(
-        name: "Ahmed", imageUrl: "assets/images/contact_image.png"),
+        name: "Salma", imageUrl: "assets/images/char4_icon.png"),
+
+
+
   ];
 
 }
