@@ -28,7 +28,7 @@ class HomeContactsGridviewContacts extends StatelessWidget {
             return HomeContactsListItem(
               userContact: users[index],
               onTap: () {
-                Navigator.pushNamed(context, Routes.chat);
+                Navigator.pushNamed(context, Routes.chat,arguments: users[index]);
               },
             );
           },

@@ -14,4 +14,9 @@ final class HomeSuccess extends HomeState {
 
   HomeSuccess({required this.usersContact});
 
+}final class HomeSearchSuccess extends HomeState {
+  final List<UserContact> searchedContacts ;
+
+  HomeSearchSuccess({required this.searchedContacts});
+
 }

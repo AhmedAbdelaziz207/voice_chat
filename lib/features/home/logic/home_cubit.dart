@@ -7,6 +7,7 @@ part 'home_state.dart';
 
 class HomeCubit extends Cubit<HomeState> {
   HomeCubit() : super(HomeInitial());
+  TextEditingController homeSearchController  = TextEditingController();
   List<UserContact> userContacts = [];
   List<UserContact> favouriteContacts = [];
   List<UserContact> searchedContacts = [];
@@ -33,7 +34,19 @@ class HomeCubit extends Cubit<HomeState> {
     favouriteContacts = userContacts;
   }
 
-  getSearchedContacts() {
-    /// Todo Filter Contacts with by search input
+  getSearchedContacts(String value) {
+    searchedContacts = userContacts.where((contact) {
+      final contactName = contact.name?.toLowerCase();
+      final searchValue = value.toLowerCase();
+      return contactName!.contains(searchValue);
+    }).toList();
+
+    emit(HomeSearchSuccess(searchedContacts: searchedContacts));
+  }
+
+  @override
+  Future<void> close() {
+    searchController.dispose();
+    return super.close();
   }
 }

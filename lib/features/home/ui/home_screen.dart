@@ -17,6 +17,8 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    late List<UserContact> userContacts;
+
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
@@ -104,14 +106,17 @@ class HomeScreen extends StatelessWidget {
                         height: 30.h,
                       ),
                       const HomeGroupsTitle(),
-                      BlocBuilder<HomeCubit,HomeState>(
+                      BlocBuilder<HomeCubit, HomeState>(
                         builder: (BuildContext context, state) {
-                          List<UserContact> users =
-                              state is HomeSuccess
-                                  ? state.usersContact
-                                  : [];
+                          if (state is HomeSearchSuccess) {
+                            userContacts = state.searchedContacts;
+                          }
+                          if (state is HomeSuccess) {
+                            userContacts = state.usersContact;
+                          }
+
                           return HomeContactsGridviewContacts(
-                              users: users);
+                              users: userContacts);
                         },
                       )
                     ],

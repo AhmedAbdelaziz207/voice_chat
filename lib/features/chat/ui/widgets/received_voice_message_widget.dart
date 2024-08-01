@@ -2,18 +2,21 @@ import 'package:audio_waveforms/audio_waveforms.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:voice_chat/core/theming/app_colors.dart';
-import 'package:voice_chat/core/utils/constants/assets_keys.dart';
 
 class ReceivedVoiceMessageWidget extends StatelessWidget {
   final PlayerController playerController = PlayerController();
 
-  ReceivedVoiceMessageWidget({super.key});
+  ReceivedVoiceMessageWidget(
+      {super.key, required this.contactImageUrl});
+
+  final String contactImageUrl;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: 300.w,
-      padding: EdgeInsets.symmetric(horizontal: 10.0.w, vertical: 10.0.h),
+      padding:
+          EdgeInsets.symmetric(horizontal: 10.0.w, vertical: 10.0.h),
       decoration: BoxDecoration(
         color: AppColors.darkGreen,
         borderRadius: BorderRadius.only(
@@ -26,8 +29,8 @@ class ReceivedVoiceMessageWidget extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          const CircleAvatar(
-            backgroundImage: AssetImage(AssetsKeys.contactImage),
+           CircleAvatar(
+            backgroundImage: AssetImage(contactImageUrl),
             radius: 20.0,
           ),
           SizedBox(width: 10.w),
@@ -42,7 +45,8 @@ class ReceivedVoiceMessageWidget extends StatelessWidget {
                       height: 30.h,
                       child: IconButton(
                         icon: Icon(
-                          playerController.playerState == PlayerState.playing
+                          playerController.playerState ==
+                                  PlayerState.playing
                               ? Icons.pause
                               : Icons.play_arrow,
                           color: AppColors.grey,
@@ -63,7 +67,6 @@ class ReceivedVoiceMessageWidget extends StatelessWidget {
                         playerController: playerController,
                         playerWaveStyle: const PlayerWaveStyle(
                           backgroundColor: AppColors.grey,
-
                           fixedWaveColor: Colors.grey,
                           liveWaveColor: Colors.purple,
                           waveThickness: 2.0,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:voice_chat/core/network/model/user_contact.dart';
 import 'package:voice_chat/core/theming/app_colors.dart';
 import 'package:voice_chat/core/theming/app_text_styles.dart';
 import 'package:voice_chat/core/utils/constants/assets_keys.dart';
@@ -8,10 +9,12 @@ import 'package:voice_chat/features/chat/ui/widgets/received_voice_message_widge
 import 'package:voice_chat/features/chat/ui/widgets/sent_voice_message_widget.dart';
 
 class ChatScreen extends StatelessWidget {
-  const ChatScreen({super.key});
-
+  const ChatScreen({super.key, required this.userContact});
+  final UserContact userContact ;
   @override
   Widget build(BuildContext context) {
+    debugPrint(userContact.name);
+
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -22,8 +25,8 @@ class ChatScreen extends StatelessWidget {
         ),
         title: Row(
           children: [
-            const CircleAvatar(
-              backgroundImage: AssetImage(AssetsKeys.contactImage),
+             CircleAvatar(
+              backgroundImage: AssetImage(userContact.imageUrl!),
               radius: 25.0,
             ),
             SizedBox(
@@ -33,7 +36,7 @@ class ChatScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Ahmed Abdelaziz ",
+                  userContact.name!,
                   style: AppTextStyles.contactLabelStyle
                       .copyWith(color: AppColors.primaryColorDark),
                 ),
@@ -49,18 +52,32 @@ class ChatScreen extends StatelessWidget {
       ),
       body: AppBackground(
         isDark: false,
-        child: ListView(
-          children: [
-            const SizedBox(height: 10,),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: ListView(
+            children: [
+              const SizedBox(height: 10,),
 
-            Align(
-                alignment: AlignmentDirectional.topStart,
-                child: ReceivedVoiceMessageWidget()),
-            const SizedBox(height: 10,),
-            Align(
-                alignment: AlignmentDirectional.topEnd,
-                child: SentVoiceMessageWidget()),
-          ],
+              Align(
+                  alignment: AlignmentDirectional.topStart,
+                  child: ReceivedVoiceMessageWidget(
+                    contactImageUrl: userContact.imageUrl!,
+                  )),
+              const SizedBox(height: 10,),
+              Align(
+                  alignment: AlignmentDirectional.topEnd,
+                  child: SentVoiceMessageWidget()),    const SizedBox(height: 10,),
+              Align(
+                  alignment: AlignmentDirectional.topEnd,
+                  child: SentVoiceMessageWidget()),
+              const SizedBox(
+                height: 10,
+              ),
+              Align(
+                  alignment: AlignmentDirectional.topEnd,
+                  child: SentVoiceMessageWidget()),
+            ],
+          ),
         ),
       ),
       floatingActionButtonLocation:
