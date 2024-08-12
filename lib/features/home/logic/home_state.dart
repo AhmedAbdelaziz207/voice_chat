@@ -10,12 +10,12 @@ final class HomeFailed extends HomeState {
   HomeFailed({required this.failedMessage});
 }
 final class HomeSuccess extends HomeState {
-  final List<UserContact> usersContact ;
+  final List<UserModel> usersContact ;
 
   HomeSuccess({required this.usersContact});
 
 }final class HomeSearchSuccess extends HomeState {
-  final List<UserContact> searchedContacts ;
+  final List<UserModel> searchedContacts ;
 
   HomeSearchSuccess({required this.searchedContacts});
 

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "125191806247",
+    "project_id": "voice-chat-b428d",
+    "storage_bucket": "voice-chat-b428d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:125191806247:android:c120071daa18dcf9c69d02",
+        "android_client_info": {
+          "package_name": "com.msar.voice_chat"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA6TyToq2tFgs1bHXVEyQ4tatFcVlvBzV8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

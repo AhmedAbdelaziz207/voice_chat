@@ -24,6 +24,12 @@ class _OTPScreenState extends State<OTPScreen> {
   late String pinValue;
 
   @override
+  void initState() {
+    context.read<OtpCubit>().sendOtpRequest(widget.phoneNumber);
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -51,8 +57,7 @@ class _OTPScreenState extends State<OTPScreen> {
                   style: AppTextStyles.otpPhoneNumber,
                 ),
                 Padding(
-                  padding: EdgeInsets.symmetric(
-                      vertical: 4.h, horizontal: 8.w),
+                  padding: EdgeInsets.symmetric(vertical: 4.h, horizontal: 8.w),
                   child: Text(
                     AppKeys.enterOtpCode,
                     style: AppTextStyles.otpInstruction,
@@ -86,13 +91,16 @@ class _OTPScreenState extends State<OTPScreen> {
                     ),
                     InkWell(
                       onTap: () {
-                        context.read<OtpCubit>().resendOtpRequest();
+                        context
+                            .read<OtpCubit>()
+                            .sendOtpRequest(widget.phoneNumber);
                       },
                       child: Text(
                         AppKeys.resend,
                         style: AppTextStyles.otpInstruction.copyWith(
-                            color: AppColors.blue,
-                            fontWeight: FontWeight.bold),
+                          color: AppColors.blue,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   ],
@@ -103,9 +111,7 @@ class _OTPScreenState extends State<OTPScreen> {
                 ElevatedButton(
                   onPressed: () {
                     if (isCompleted) {
-                      context
-                          .read<OtpCubit>()
-                          .confirmOtpRequest(pinValue);
+                      context.read<OtpCubit>().confirmOtpCode(pinValue);
                     }
                   },
                   style: ElevatedButton.styleFrom(

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:voice_chat/core/network/model/user_contact.dart';
+import 'package:voice_chat/core/network/model/user_model.dart';
 import 'package:voice_chat/core/theming/app_text_styles.dart';
 import 'package:voice_chat/core/utils/constants/app_keys.dart';
 import 'package:voice_chat/core/widgets/app_background.dart';
@@ -17,7 +17,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    late List<UserContact> userContacts;
+    List<UserModel> userContacts = []; // Initialized with an empty list
 
     return Scaffold(
       extendBodyBehindAppBar: true,
@@ -67,13 +67,20 @@ class HomeScreen extends StatelessWidget {
                 borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(30.r),
                     topRight: Radius.circular(30.r))),
-            child: BlocBuilder<HomeCubit, HomeState>(
-                builder: (context, state) {
+            child: BlocBuilder<HomeCubit, HomeState>(builder: (context, state) {
               if (state is HomeLoading) {
                 return const Center(
                   child: CircularProgressIndicator(),
                 );
               }
+
+              if (state is HomeSearchSuccess) {
+                print("Home Search success");
+                userContacts = state.searchedContacts;
+              } else if (state is HomeSuccess) {
+                userContacts = state.usersContact;
+              }
+
               return SingleChildScrollView(
                 child: Padding(
                   padding: EdgeInsets.all(8.0.sp),
@@ -83,8 +90,7 @@ class HomeScreen extends StatelessWidget {
                         padding: EdgeInsets.symmetric(
                             horizontal: 14.0.w, vertical: 12.h),
                         child: Row(
-                          mainAxisAlignment:
-                              MainAxisAlignment.spaceBetween,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
                               AppKeys.pin,
@@ -106,19 +112,9 @@ class HomeScreen extends StatelessWidget {
                         height: 30.h,
                       ),
                       const HomeGroupsTitle(),
-                      BlocBuilder<HomeCubit, HomeState>(
-                        builder: (BuildContext context, state) {
-                          if (state is HomeSearchSuccess) {
-                            userContacts = state.searchedContacts;
-                          }
-                          if (state is HomeSuccess) {
-                            userContacts = state.usersContact;
-                          }
-
-                          return HomeContactsGridviewContacts(
-                              users: userContacts);
-                        },
-                      )
+                      HomeContactsGridviewContacts(
+                        userContacts: userContacts,
+                      ),
                     ],
                   ),
                 ),

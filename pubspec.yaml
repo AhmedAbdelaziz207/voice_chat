@@ -43,6 +43,10 @@ dependencies:
   voice_message_package: ^2.2.1
   audio_waveforms: ^1.0.5
   bloc: ^8.1.4
+  firebase_core: ^3.3.0
+  firebase_auth: ^5.1.4
+  shared_preferences: ^2.3.1
+  cloud_firestore: ^5.2.1
 
 dev_dependencies:
   flutter_test:

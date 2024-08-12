@@ -9,7 +9,7 @@ import '../../../../core/utils/constants/app_keys.dart';
 class LoginCountriesDropdownWidget extends StatefulWidget {
   const LoginCountriesDropdownWidget({super.key});
 
-  static const List<String> codes = ['+20', '+62', '+82', '+1'];
+  static const List<String> codes = ['+20', '+44', '+82', '+1',"+22"];
 
   @override
   State<LoginCountriesDropdownWidget> createState() =>

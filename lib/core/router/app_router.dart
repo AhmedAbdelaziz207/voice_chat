@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:voice_chat/core/network/model/user_contact.dart';
+import 'package:voice_chat/core/network/model/user_model.dart';
 import 'package:voice_chat/core/router/routes.dart';
 import 'package:voice_chat/features/chat/ui/chat_screen.dart';
 import 'package:voice_chat/features/groups/ui/groups_screen.dart';
@@ -9,6 +9,7 @@ import 'package:voice_chat/features/home/logic/home_cubit.dart';
 import 'package:voice_chat/features/home/ui/home_screen.dart';
 import 'package:voice_chat/features/login/ui/login_screen.dart';
 import 'package:voice_chat/features/otp/logic/otp_cubit.dart';
+import 'package:voice_chat/features/profile/ui/user_profile_screen.dart';
 import 'package:voice_chat/features/splash/splash_screen.dart';
 import '../../features/login/logic/login_cubit.dart';
 import '../../features/otp/ui/otp_screen.dart';
@@ -55,13 +56,19 @@ class AppRouter {
       case Routes.chat:
         return MaterialPageRoute(
           builder: (context) {
-            return  ChatScreen(userContact: routeSettings.arguments as UserContact ,);
+            return  ChatScreen(userContact: routeSettings.arguments as UserModel ,);
           },
         );
       case Routes.groups:
         return MaterialPageRoute(
           builder: (context) {
             return const GroupsScreen();
+          },
+        );
+  case Routes.profile:
+        return MaterialPageRoute(
+          builder: (context) {
+            return const UserProfileScreen();
           },
         );
 

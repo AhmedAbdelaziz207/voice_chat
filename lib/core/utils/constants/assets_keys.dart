@@ -5,6 +5,7 @@ class AssetsKeys{
   static const contactImage = "assets/images/contact_image.png" ;
   static const voiceChatIcon = "assets/images/voice_chat.png" ;
   static const micIcon = "assets/icons/microphone_icon.png" ;
+  static const groupImage = "assets/images/group_icon.png" ;
 
 
 

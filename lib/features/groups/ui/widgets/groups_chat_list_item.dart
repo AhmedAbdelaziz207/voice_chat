@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:voice_chat/core/network/model/user_model.dart';
+import 'package:voice_chat/core/router/routes.dart';
 import 'package:voice_chat/core/theming/app_colors.dart';
 import 'package:voice_chat/core/theming/app_text_styles.dart';
 import 'package:voice_chat/core/utils/constants/assets_keys.dart';
@@ -10,7 +12,12 @@ class GroupsChatListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      onTap: () {},
+      onTap: () {
+        Navigator.pushNamed(
+          context,
+          Routes.chat,
+        );
+      },
       leading: CircleAvatar(
         backgroundImage: const AssetImage(AssetsKeys.contactImage),
         radius: 25.0.r,

@@ -1,23 +1,18 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:voice_chat/core/network/model/user_contact.dart';
+import 'package:voice_chat/core/network/model/user_model.dart';
 import 'package:voice_chat/core/theming/app_colors.dart';
 import 'package:voice_chat/core/theming/app_text_styles.dart';
 
 class UserProfileCard extends StatelessWidget {
   const UserProfileCard(
-      {super.key,
-      required this.userContact,
-      this.onTap,
-      this.showMic});
+      {super.key, required this.userContact, this.onTap, this.showMic});
 
-  final UserContact userContact;
+  final UserModel userContact;
 
   final Function()? onTap;
 
-  final bool? showMic ;
+  final bool? showMic;
 
   @override
   Widget build(BuildContext context) {
@@ -31,10 +26,10 @@ class UserProfileCard extends StatelessWidget {
           children: [
             Stack(children: [
               CircleAvatar(
-                backgroundImage: AssetImage(userContact.imageUrl!),
+                backgroundImage: NetworkImage(userContact.profileImageUrl!),
                 radius: 25.0,
               ),
-              if ( showMic == true)
+              if (showMic == true)
                 const Positioned(
                   bottom: -3,
                   right: -4,

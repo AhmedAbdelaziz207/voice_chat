@@ -8,7 +8,10 @@ class Routes {
   static const register = '/register';
 
   static const otp = '/otp';
+
   static const chat = '/chat';
 
   static const groups = '/groups';
+
+  static const profile = '/profile';
 }

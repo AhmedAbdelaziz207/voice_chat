@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:voice_chat/core/utils/constants/app_keys.dart';
+import 'package:voice_chat/core/network/model/user_model.dart';
+import 'package:voice_chat/core/router/routes.dart';
 
 import 'home_contacts_list_item.dart';
 
 class PinnedContactsListViewWidget extends StatelessWidget {
   const PinnedContactsListViewWidget({super.key});
-
-  static var userContacts = AppKeys.userContacts;
-
+  static var userContacts = [];
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -18,7 +17,11 @@ class PinnedContactsListViewWidget extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         itemCount: userContacts.length,
         itemBuilder: (BuildContext context, int index) {
-          return HomeContactsListItem(userContact: userContacts[index]);
+          return HomeContactsListItem(
+            userContact: userContacts[index],
+            onTap: () {
+            },
+          );
         },
       ),
     );

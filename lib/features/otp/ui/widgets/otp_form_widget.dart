@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pinput/pinput.dart';
@@ -34,7 +32,7 @@ class OTPFormWidget extends StatelessWidget {
 
 
     return Pinput(
-      length: 5,
+      length: 6,
       submittedPinTheme: pinTheme,
       focusedPinTheme: pinTheme,
       defaultPinTheme: PinTheme(
