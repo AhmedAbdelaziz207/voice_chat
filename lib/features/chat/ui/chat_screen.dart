@@ -1,13 +1,15 @@
+import 'package:chat_bubbles/bubbles/bubble_normal_audio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:voice_chat/core/network/model/chat_message.dart';
 import 'package:voice_chat/core/network/model/user_model.dart';
 import 'package:voice_chat/core/theming/app_colors.dart';
 import 'package:voice_chat/core/theming/app_text_styles.dart';
-import 'package:voice_chat/core/utils/constants/assets_keys.dart';
 import 'package:voice_chat/core/widgets/app_background.dart';
-import 'package:voice_chat/features/chat/ui/widgets/received_voice_message_widget.dart';
-import 'package:voice_chat/features/chat/ui/widgets/sent_voice_message_widget.dart';
+import 'package:voice_chat/features/chat/logic/chat_cubit.dart';
 import '../../../core/router/routes.dart';
+import '../logic/chat_state.dart';
 
 class ChatScreen extends StatelessWidget {
   const ChatScreen({super.key, required this.userContact});
@@ -16,6 +18,8 @@ class ChatScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    context.read<ChatCubit>().getOrCreateChat(userContact.userId!);
+    context.read<ChatCubit>().getChatMessages(userContact.userId!);
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -31,7 +35,7 @@ class ChatScreen extends StatelessWidget {
                 Navigator.pushNamed(context, Routes.profile);
               },
               child: CircleAvatar(
-                backgroundImage: AssetImage(userContact.profileImageUrl!),
+                backgroundImage: NetworkImage(userContact.profileImageUrl!),
                 radius: 25.0,
               ),
             ),
@@ -49,19 +53,74 @@ class ChatScreen extends StatelessWidget {
           ],
         ),
       ),
-      body: const AppBackground(
+      body: AppBackground(
         isDark: false,
         child: Padding(
-          padding: EdgeInsets.all(8.0),
-          child: SizedBox(),
+          padding: const EdgeInsets.all(8.0),
+          child: BlocBuilder<ChatCubit, ChatState>(
+              builder: (BuildContext context, state) {
+            List<ChatMessage> messages = state is ChatMessagesLoaded
+                ? state.messages
+                : context.read<ChatCubit>().messages;
+            return BlocBuilder<ChatCubit,ChatState> (
+              builder: (BuildContext context, state) {
+                return ListView.builder(
+                  itemCount: messages.length,
+                  itemBuilder: (context, index) {
+                    bool isPlaying = context.read<ChatCubit>().isPlaying ;
+                    ChatMessage message = messages[index];
+                    bool isSender = message.senderId != userContact.userId;
+                    return Padding(
+                      padding: const EdgeInsets.only(bottom: 8.0),
+                      child: BubbleNormalAudio(
+                        seen: message.isRead?? false ,
+                        isSender: isSender ,
+                        onSeekChanged: (value) {},
+                        isPlaying: isPlaying,
+                        isPause: !isPlaying ,
+                        bubbleRadius: 16.0,
+                        onPlayPauseButtonClick: () {
+                          if(isPlaying){
+                            context.read<ChatCubit>().stopAudio();
+                          }else{
+                            context.read<ChatCubit>().playAudio(message);
+                          }
+                        },
+                      ),
+                    );
+                  },
+                );
+              },
+            );
+          }),
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: FloatingActionButton(
-          onPressed: () {},
-          backgroundColor: AppColors.transparent,
-          shape: const CircleBorder(),
-          child: InkWell(onTap: () {}, child: Image.asset(AssetsKeys.micIcon))),
+      floatingActionButton: BlocBuilder<ChatCubit, ChatState>(
+        builder: (context, state) {
+          var isRecording = state is ChatRecording ? state.isRecording : false;
+
+          return FloatingActionButton(
+            onPressed: () {},
+            backgroundColor: AppColors.transparent,
+            shape: const CircleBorder(),
+            child: IconButton(
+              icon: Icon(
+                isRecording ? Icons.pause : Icons.mic,
+                size: 40.r,
+              ),
+              onPressed: () {
+                if (isRecording) {
+                  context.read<ChatCubit>().stopRecording(userContact.userId!);
+                } else {
+                  context.read<ChatCubit>().startRecord();
+                }
+              },
+              style: IconButton.styleFrom(backgroundColor: AppColors.white),
+            ),
+          );
+        },
+      ),
       bottomNavigationBar: SizedBox(
         height: 50.h,
         child: const BottomAppBar(

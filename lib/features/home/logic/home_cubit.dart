@@ -19,7 +19,7 @@ class HomeCubit extends Cubit<HomeState> {
         try {
             emit(HomeLoading());
             QuerySnapshot<Map<String, dynamic>> snapshot =
-                await FirebaseService.getUserData();
+                await FirebaseService.getUsersData();
             userContacts = snapshot.docs.map((doc) {
                 return UserModel.fromJson(doc.data());
             }).toList();

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:voice_chat/core/network/services/session_provider.dart';
 import 'package:voice_chat/core/router/routes.dart';
 import 'package:voice_chat/core/utils/constants/app_keys.dart';
 import 'package:voice_chat/core/utils/preferences/preference_manager.dart';
@@ -21,8 +22,14 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
 
     Future.delayed(const Duration(seconds: 3), () async {
-      SharedPreferences preferences = await SharedPreferences.getInstance();
-      var token =  preferences.getString(AppKeys.token);
+
+       //
+       // SharedPreferences preferences = await SharedPreferences.getInstance();
+       //
+      SessionProvider sessionProvider = SessionProvider();
+      await sessionProvider.loadSession();
+
+      var token = sessionProvider.session?.token;
       if (token == null || token.isEmpty) {
         Navigator.pushNamedAndRemoveUntil(
             context, Routes.login, (route) => false);

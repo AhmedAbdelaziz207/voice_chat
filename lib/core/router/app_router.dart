@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:voice_chat/core/network/model/user_model.dart';
 import 'package:voice_chat/core/router/routes.dart';
+import 'package:voice_chat/features/chat/logic/chat_cubit.dart';
 import 'package:voice_chat/features/chat/ui/chat_screen.dart';
 import 'package:voice_chat/features/groups/ui/groups_screen.dart';
 import 'package:voice_chat/features/home/logic/home_cubit.dart';
@@ -13,78 +14,90 @@ import 'package:voice_chat/features/profile/ui/user_profile_screen.dart';
 import 'package:voice_chat/features/splash/splash_screen.dart';
 import '../../features/login/logic/login_cubit.dart';
 import '../../features/otp/ui/otp_screen.dart';
+import '../network/model/chat.dart';
 
 class AppRouter {
-  Route onGenerateRoute(RouteSettings routeSettings) {
-    switch (routeSettings.name) {
-      case Routes.splash:
-        return MaterialPageRoute(
-          builder: (context) {
-            return const SplashScreen();
-          },
-        );
-      case Routes.home:
-        return MaterialPageRoute(
-          builder: (context) {
-            return BlocProvider<HomeCubit>(create: (BuildContext context) {
-              return HomeCubit()..getAllContacts();
-            },
-            child: const HomeScreen());
-          },
-        );
-      case Routes.login:
-        return MaterialPageRoute(
-          builder: (context) {
-            return BlocProvider<LoginCubit>(
-              create: (BuildContext context) {
-                return LoginCubit();
-              },
-              child: const LoginScreen(),
-            );
-          },
-        );
-      case Routes.otp:
-        return MaterialPageRoute(
-          builder: (context) {
-            String? phoneNumber = routeSettings.arguments as String;
-            return BlocProvider(
-              create: (context) => OtpCubit(),
-              child: OTPScreen(phoneNumber: phoneNumber,),
-            );
-          },
-        );
-      case Routes.chat:
-        return MaterialPageRoute(
-          builder: (context) {
-            return  ChatScreen(userContact: routeSettings.arguments as UserModel ,);
-          },
-        );
-      case Routes.groups:
-        return MaterialPageRoute(
-          builder: (context) {
-            return const GroupsScreen();
-          },
-        );
-  case Routes.profile:
-        return MaterialPageRoute(
-          builder: (context) {
-            return const UserProfileScreen();
-          },
-        );
+    Route onGenerateRoute(RouteSettings routeSettings) {
+        switch (routeSettings.name) {
+            case Routes.splash:
+                return MaterialPageRoute(
+                    builder: (context) {
+                        return const SplashScreen();
+                    },
+                );
+            case Routes.home:
+                return MaterialPageRoute(
+                    builder: (context) {
+                        return BlocProvider<HomeCubit>(
+                            create: (BuildContext context) {
+                                return HomeCubit()..getAllContacts();
+                            },
+                            child: const HomeScreen());
+                    },
+                );
+            case Routes.login:
+                return MaterialPageRoute(
+                    builder: (context) {
+                        return BlocProvider<LoginCubit>(
+                            create: (BuildContext context) {
+                                return LoginCubit();
+                            },
+                            child: const LoginScreen(),
+                        );
+                    },
+                );
+            case Routes.otp:
+                return MaterialPageRoute(
+                    builder: (context) {
+                        String? phoneNumber = routeSettings.arguments as String;
+                        return BlocProvider(
+                            create: (context) => OtpCubit(),
+                            child: OTPScreen(
+                                phoneNumber: phoneNumber,
+                            ),
+                        );
+                    },
+                );
+            case Routes.chat:
+            UserModel receiverUser =  routeSettings.arguments as UserModel; 
+                return MaterialPageRoute(
+                    builder: (context) {
+                        return BlocProvider<ChatCubit>(
+                            create: (BuildContext context) {
+                                return ChatCubit();
+                            },
+                            child: ChatScreen(
+                                userContact: receiverUser ,
+                            ),
+                        );
+                    },
+                );
+            case Routes.groups:
+                return MaterialPageRoute(
+                    builder: (context) {
+                        return const GroupsScreen();
+                    },
+                );
+            case Routes.profile:
+                return MaterialPageRoute(
+                    builder: (context) {
+                        return const UserProfileScreen();
+                    },
+                );
 
-      default:
-        return MaterialPageRoute(
-          builder: (context) {
-            return Scaffold(
-              body: Center(
-                child: Text(
-                  "Page Not Found ",
-                  style: TextStyle(fontSize: 24.sp),
-                ),
-              ),
+            default:
+            return MaterialPageRoute(
+                builder: (context) {
+                    return Scaffold(
+                        body: Center(
+                            child: Text(
+                                "Page Not Found ",
+                                style: TextStyle(fontSize: 24.sp),
+                            ),
+                        ),
+                    );
+                },
             );
-          },
-        );
+        }
     }
-  }
 }

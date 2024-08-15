@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:voice_chat/core/network/model/user_model.dart';
+import 'package:voice_chat/core/network/services/session_provider.dart';
 import 'package:voice_chat/core/router/routes.dart';
 import 'home_contacts_list_item.dart';
 
@@ -27,7 +28,7 @@ class HomeContactsGridviewContacts extends StatelessWidget {
             return HomeContactsListItem(
               userContact: userContacts[index],
               onTap: () {
-                Navigator.pushNamed(context, Routes.chat );
+                Navigator.pushNamed(context, Routes.chat, arguments: userContacts[index]);
               },
             );
           },
