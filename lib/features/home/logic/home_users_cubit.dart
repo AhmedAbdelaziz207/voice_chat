@@ -1,31 +1,39 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:voice_chat/core/network/model/chat.dart';
 import 'package:voice_chat/core/network/services/firebase_service.dart';
-import 'package:voice_chat/core/utils/constants/app_keys.dart';
 import '../../../core/network/model/user_model.dart';
 part 'home_state.dart';
 
-class HomeCubit extends Cubit<HomeState> {
-    HomeCubit() : super(HomeInitial());
-    TextEditingController homeSearchController  = TextEditingController();
+class HomeUsersCubit extends Cubit<HomeUsersState> {
+    HomeUsersCubit() : super(HomeUsersLoading());
+    TextEditingController homeSearchController = TextEditingController();
     List<UserModel> userContacts = [];
     List<UserModel> favouriteContacts = [];
     List<UserModel> searchedContacts = [];
 
     TextEditingController searchController = TextEditingController();
-
     Future<void> getAllContacts() async {
         try {
-            emit(HomeLoading());
             QuerySnapshot<Map<String, dynamic>> snapshot =
-                await FirebaseService.getUsersData();
+            await FirebaseService.getUsersData();
             userContacts = snapshot.docs.map((doc) {
-                return UserModel.fromJson(doc.data());
-            }).toList();
-            emit(HomeSuccess(usersContact: userContacts));
+                    return UserModel.fromJson(doc.data());
+                }).toList();
+            emit(HomeUsersSuccess(usersContact: userContacts));
         } catch (e) {
-            emit(HomeFailed( failedMessage: e.toString()));
+            emit(HomeUsersFailed(failedMessage: e.toString()));
+        }
+    }
+
+    getUser(userId) async {
+        DocumentSnapshot<Map<String, dynamic>> doc = await FirebaseService
+            .getUserData(userId);
+        if (doc.data() != null) {
+            return UserModel.fromJson(doc.data()!);
+        } else {
+            debugPrint("User document not fount $userId");
         }
     }
 
@@ -46,7 +54,7 @@ class HomeCubit extends Cubit<HomeState> {
 
     @override
     Future<void> close() {
-        searchController.dispose();
+        homeSearchController.dispose();
         return super.close();
     }
 }

@@ -9,7 +9,8 @@ class OTPFormWidget extends StatelessWidget {
       {super.key,
       this.onCompleted,
       this.onSubmitted,
-      this.validator, this.onChanged});
+      this.validator,
+      this.onChanged});
 
   final Function(String)? onCompleted;
 
@@ -30,9 +31,10 @@ class OTPFormWidget extends StatelessWidget {
             border: Border.all(color: AppColors.primaryColor)),
         textStyle: AppTextStyles.otpInput);
 
-
     return Pinput(
       length: 6,
+      autofocus: true,
+      showCursor: true,
       submittedPinTheme: pinTheme,
       focusedPinTheme: pinTheme,
       defaultPinTheme: PinTheme(

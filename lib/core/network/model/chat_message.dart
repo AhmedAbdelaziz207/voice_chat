@@ -6,18 +6,21 @@ class ChatMessage {
     late final String? messageId;
     late final String? senderId;
     late final String? receiverId;
-    late final bool? isRead;
+    late final bool? isPlayed;
     late final DateTime? dateTime;
     late final MessageType? type ;
+   late  double? messageDuration;
 
     ChatMessage({
         this.messageId,
         this.senderId,
         this.messageContent,
-        this.isRead,
+        this.isPlayed = false,
         this.receiverId,
         this.dateTime,
-        this.type
+        this.type,
+        this.messageDuration  ,
+
     });
 
     ChatMessage.fromJson(Map<String, dynamic> json) {
@@ -25,7 +28,8 @@ class ChatMessage {
         messageId = json['message_id'];
         senderId = json['sender_id'];
         receiverId = json['receiver_id'];
-        isRead = json['is_read'];
+        isPlayed = json['is_played'];
+        messageDuration = json["message_duration"];
         dateTime = (json['date_time'] as Timestamp).toDate() ;
         type = MessageType.values.firstWhere(
                 (e) => e.toString().split('.').last == json['type'],
@@ -38,8 +42,9 @@ class ChatMessage {
             'message_content': messageContent,
             'message_id': messageId,
             'sender_id': senderId,
+            'message_duration': messageDuration,
             'receiver_id': receiverId,
-            'is_read': isRead,
+            'is_played': isPlayed,
             'date_time': dateTime,
             "type" : type
                 .toString()

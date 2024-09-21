@@ -3,7 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class UserModel {
     late final String? userId;
 
-    late final String? name;
+    late  String? name;
 
     late final String? profileImageUrl;
 

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:voice_chat/core/router/app_router.dart';
 import 'package:voice_chat/core/router/routes.dart';
+import 'package:voice_chat/features/notifications/notifications_screen.dart';
 import 'features/splash/splash_screen.dart';
 
 class VoiceChat extends StatelessWidget {

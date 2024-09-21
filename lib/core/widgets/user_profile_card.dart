@@ -35,17 +35,21 @@ class UserProfileCard extends StatelessWidget {
                   right: -4,
                   child: Icon(
                     Icons.mic,
-                    color: AppColors.primaryColor,
+                    color: AppColors.white200,
                     size: 24.0,
                   ),
                 ),
             ]),
             const SizedBox(height: 8.0),
             Expanded(
-              child: Text(userContact.name!,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: AppTextStyles.contactLabelStyle),
+              child: Text(
+                userContact.name!,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: AppTextStyles.contactLabelStyle.copyWith(
+                  color: AppColors.white,
+                ),
+              ),
             ),
           ],
         ),

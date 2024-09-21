@@ -5,23 +5,30 @@ import 'package:just_audio/just_audio.dart';
 import 'package:voice_chat/core/theming/app_colors.dart';
 import 'package:voice_chat/features/chat/ui/widgets/voice_message_widget.dart';
 
-class SentVoiceMessageWidget extends StatelessWidget {
+class ReceivedVoiceMessageWidget extends StatelessWidget {
   final PlayerController playerController = PlayerController();
-  SentVoiceMessageWidget({super.key, required this.audioSource, required this.id});
-  final AudioSource audioSource ;
-  final String id ;
+
+  ReceivedVoiceMessageWidget({
+    super.key,
+    required this.audioSource,
+    required this.id,
+  });
+
+  final AudioSource audioSource;
+
+  final String id;
 
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: Alignment.centerLeft,
+      alignment: Alignment.centerRight,
       child: Padding(
-        padding: const EdgeInsets.only(bottom: 8.0),
+        padding: const EdgeInsets.only(bottom: 4),
         child: Container(
           width: 300.w,
           padding: EdgeInsets.symmetric(horizontal: 10.0.w, vertical: 10.0.h),
           decoration: BoxDecoration(
-            color: AppColors.darkGreen,
+            color: AppColors.primaryColorDark,
             borderRadius: BorderRadius.only(
               topLeft: Radius.circular(40.r),
               bottomLeft: Radius.circular(10.r),
@@ -31,7 +38,7 @@ class SentVoiceMessageWidget extends StatelessWidget {
           ),
           child: AudioPlayerMessage(
             source: audioSource,
-            id: id ,
+            id: id,
           ),
         ),
       ),

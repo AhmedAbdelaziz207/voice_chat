@@ -10,8 +10,9 @@ final class LoginLoading extends LoginState {}
 
 final class LoginSuccess extends LoginState {
   final String phoneNumber;
+  final String userName;
 
-  LoginSuccess({required this.phoneNumber});
+  LoginSuccess({required this.phoneNumber,required this.userName});
 }
 
 final class LoginFailed extends LoginState {

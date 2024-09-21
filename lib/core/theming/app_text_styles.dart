@@ -4,9 +4,9 @@ import 'package:voice_chat/core/theming/app_colors.dart';
 
 class AppTextStyles {
   static TextStyle loginScreenTextStyle = TextStyle(
-    fontSize: 20.sp,
+    fontSize: 18.sp,
     fontWeight: FontWeight.w600,
-    color: AppColors.primaryColor,
+    color: AppColors.white200,
   );
 
   static const TextStyle otpPhoneNumber = TextStyle(
@@ -40,7 +40,7 @@ class AppTextStyles {
   static final TextStyle homeTextStyle = TextStyle(
     fontSize: 20.sp,
     fontWeight: FontWeight.w900,
-    color: AppColors.primaryColor,
+    color: AppColors.white200,
   );
 
   static final TextStyle contactLabelStyle = TextStyle(

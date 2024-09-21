@@ -24,25 +24,28 @@ class _LoginCountriesDropdownWidgetState
     int? selectedIndex = context.read<LoginCubit>().selectedCountryCodeIndex ;
 
 
-    return DropdownButton(
-        dropdownColor: AppColors.primaryColor,
-        value: selectedIndex,
-        iconSize: 20.r,
-        items: AppKeys.countryCodes
-            .map((code) => DropdownMenuItem(
-                  value: LoginCountriesDropdownWidget.codes
-                      .indexOf(code),
-                  child: Text(
-                    code,
-                    style: const TextStyle(
-                      color: AppColors.primaryColorDark,
+    return Padding(
+      padding: const EdgeInsets.only(left: 8.0),
+      child: DropdownButton(
+          dropdownColor: AppColors.primaryColor,
+          value: selectedIndex,
+          iconSize: 20.r,
+          items: AppKeys.countryCodes
+              .map((code) => DropdownMenuItem(
+                    value: LoginCountriesDropdownWidget.codes
+                        .indexOf(code),
+                    child: Text(
+                      code,
+                      style: const TextStyle(
+                        color: AppColors.white200,
+                      ),
                     ),
-                  ),
-                ))
-            .toList(),
-        onChanged: (countryCode) {
-          context.read<LoginCubit>().selectedCountryCodeIndex = ((countryCode ?? 0) as int?)!;
-          setState(() {});
-        });
+                  ))
+              .toList(),
+          onChanged: (countryCode) {
+            context.read<LoginCubit>().selectedCountryCodeIndex = ((countryCode ?? 0) as int?)!;
+            setState(() {});
+          }),
+    );
   }
 }

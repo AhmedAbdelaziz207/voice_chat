@@ -13,6 +13,7 @@ import 'package:voice_chat/features/login/logic/login_cubit.dart';
 import 'package:voice_chat/features/login/logic/login_state.dart';
 import 'package:voice_chat/features/login/ui/widgets/login_button_widget.dart';
 import 'package:voice_chat/features/login/ui/widgets/login_countries_dropdown_widget.dart';
+import 'package:voice_chat/features/login/ui/widgets/login_screen_form.dart';
 import 'package:voice_chat/features/login/ui/widgets/login_text_field_widget.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -20,9 +21,9 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppBackground(
-      isDark: false,
-      child: SingleChildScrollView(
+    return Scaffold(
+      backgroundColor: AppColors.secondaryColor,
+      body: SingleChildScrollView(
         child: BlocListener<LoginCubit, LoginState>(
           listener: (context, state) {
             handleLoginStates(context, state);
@@ -34,40 +35,9 @@ class LoginScreen extends StatelessWidget {
               ),
               Image.asset(AssetsKeys.appLogo),
               Padding(
-                padding: EdgeInsets.symmetric(
-                    horizontal: 21.0.w, vertical: 40.h),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      AppKeys.phoneNumber,
-                      style: AppTextStyles.loginScreenTextStyle,
-                    ),
-                    SizedBox(
-                      height: 12.h,
-                    ),
-                    Container(
-                      height: 48.h,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12.r),
-                        border: Border.all(
-                            color: AppColors.white.withOpacity(.8)),
-                      ),
-                      child: const Row(
-                        children: [
-                          LoginCountriesDropdownWidget(),
-                          VerticalDivider(
-                            color: AppColors.primaryColor,
-                            thickness: 1,
-                          ),
-                          Expanded(
-                            child: LoginTextFieldWidget(),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
+                padding:
+                    EdgeInsets.symmetric(horizontal: 21.0.w, vertical: 40.h),
+                child: const LoginScreenForm(),
               ),
               SizedBox(
                 height: 70.h,
@@ -90,7 +60,10 @@ class LoginScreen extends StatelessWidget {
       Navigator.pushNamed(
         context,
         Routes.otp,
-        arguments: state.phoneNumber,
+        arguments: {
+          "phoneNumber": state.phoneNumber,
+          "userName": state.userName
+        },
       );
     }
   }

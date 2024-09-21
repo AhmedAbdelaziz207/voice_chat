@@ -5,14 +5,14 @@ class AppKeys {
   static const confirmOTP = "Confirm OTP code";
   static const resend = "Resend";
   static const confirm = "Confirm";
-  static const pin = "Pin";
+  static const all = "All";
   static const haveNotConfirmCode = "Haven't got the confirmation code yet? ";
   static const enterOtpCode =
       "Enter the 5-digit OTP code that has been sent from SMS to complete your account registration";
 
   static const search = "Search";
 
-  static const contacts = "Contacts";
+  static const myChats = "My Chats ";
 
   static const groups = "Groups";
 
@@ -31,7 +31,12 @@ class AppKeys {
   static const messages = "messages";
 
   static const lastMessage = "last_message";
+
   static const chatMessages = "chat_messages";
 
   static const dateTime = "date_time";
+
+  static const userName = "User Name ";
+
+  static const enterYourUserName = "Enter your Name ";
 }

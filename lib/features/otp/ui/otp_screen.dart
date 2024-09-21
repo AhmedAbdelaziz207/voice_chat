@@ -10,9 +10,11 @@ import 'package:voice_chat/features/otp/logic/otp_cubit.dart';
 import 'package:voice_chat/features/otp/ui/widgets/otp_form_widget.dart';
 
 class OTPScreen extends StatefulWidget {
-  const OTPScreen({super.key, required this.phoneNumber});
+  const OTPScreen(
+      {super.key, required this.phoneNumber, required this.userName});
 
   final String phoneNumber;
+  final String userName;
 
   @override
   State<OTPScreen> createState() => _OTPScreenState();
@@ -85,9 +87,11 @@ class _OTPScreenState extends State<OTPScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
-                      AppKeys.haveNotConfirmCode,
-                      style: AppTextStyles.otpInstruction,
+                    Expanded(
+                      child: Text(
+                        AppKeys.haveNotConfirmCode,
+                        style: AppTextStyles.otpInstruction,
+                      ),
                     ),
                     InkWell(
                       onTap: () {
@@ -111,14 +115,17 @@ class _OTPScreenState extends State<OTPScreen> {
                 ElevatedButton(
                   onPressed: () {
                     if (isCompleted) {
-                      context.read<OtpCubit>().confirmOtpCode(pinValue);
+                      context.read<OtpCubit>().confirmOtpCode(
+                            pinValue,
+                            widget.userName,
+                          );
                     }
                   },
                   style: ElevatedButton.styleFrom(
                       minimumSize: Size(double.infinity, 54.h),
                       backgroundColor: isCompleted
                           ? AppColors.primaryColor
-                          : AppColors.secondaryColor),
+                          : AppColors.lightGrey),
                   child: BlocBuilder<OtpCubit, OtpState>(
                     builder: (context, state) {
                       if (state is OtpLoading) {

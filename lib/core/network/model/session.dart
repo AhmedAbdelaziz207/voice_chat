@@ -1,6 +1,6 @@
 class Session {
   String? token;
   String? userId;
-
-  Session({this.token, this.userId});
+  String? userName ;
+  Session({this.token, this.userId,this.userName});
 }

@@ -1,18 +1,37 @@
-import 'package:voice_chat/core/services/audio_manager.dart';
+import 'package:voice_chat/core/network/services/firebase_service.dart';
 
 import '../network/model/chat_message.dart';
+import 'audio_manager.dart';
 
 class MessageQueueManager {
     List<ChatMessage> messageQueue = [];
-    AudioManager audioManager = AudioManager();
+    late AudioManager audioManager;
+    String? lastProcessedMessageId;
 
-    void processMessageQueue() async {
-        if (messageQueue.isNotEmpty) {
+    MessageQueueManager() {
+        audioManager = AudioManager();
+    }
+
+    bool isInitialLoad = true;
+
+    void processMessageQueue(chatId) async {
+        if (messageQueue.isEmpty) return;
+
+        while (messageQueue.isNotEmpty) {
             ChatMessage message = messageQueue.removeAt(0);
             await audioManager.playAudio(message);
-            if (messageQueue.isNotEmpty) {
-                processMessageQueue();
-            }
+            await FirebaseService.updateMessageFiled(
+                chatId: chatId,
+                messageId: message.messageId!,
+                fieldName: "is_played",
+                newValue: true,
+            );
         }
+    }
+
+    bool isNewMessage(ChatMessage message) {
+        if (isInitialLoad) return false; // Skip processing during initial load
+        return lastProcessedMessageId == null ||
+            message.messageId != lastProcessedMessageId;
     }
 }

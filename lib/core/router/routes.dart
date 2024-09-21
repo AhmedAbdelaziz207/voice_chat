@@ -14,4 +14,6 @@ class Routes {
   static const groups = '/groups';
 
   static const profile = '/profile';
+
+  static const notificationsScreen = '/notificationsScreen';
 }

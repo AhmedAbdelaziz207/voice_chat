@@ -1,3 +1,6 @@
+
+import 'dart:collection';
+
 import 'package:voice_chat/core/network/model/chat.dart';
 
 import '../../../core/network/model/chat_message.dart';
@@ -55,10 +58,19 @@ final class AudioUploadFailed extends ChatState {
     AudioUploadFailed({required this.failedMessage});
 }
 final class AudioStartPlaying extends ChatState{
-    bool isPlaying ;
+    Map<String,bool> isPlaying ;
     AudioStartPlaying({required this.isPlaying});
 }
 final class AudioStopPlaying extends ChatState{
-    bool isPlaying ;
+    Map<String,bool> isPlaying ;
     AudioStopPlaying({required this.isPlaying});
+}
+final class PositionUpdated extends ChatState{
+    Map<String, Duration>  positionMap ;
+    PositionUpdated({required this.positionMap});
+}
+
+final class MessageDurationLoaded extends ChatState {
+   final  Duration? duration  ;
+    MessageDurationLoaded({required this.duration});
 }

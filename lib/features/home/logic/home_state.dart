@@ -1,22 +1,25 @@
-part of 'home_cubit.dart';
+part of 'home_users_cubit.dart';
 
 @immutable
-sealed class HomeState {}
+sealed class HomeUsersState {}
 
-final class HomeInitial extends HomeState {}
-final class HomeLoading extends HomeState {}
-final class HomeFailed extends HomeState {
-  final String failedMessage ;
-  HomeFailed({required this.failedMessage});
+final class HomeUsersLoading extends HomeUsersState {}
+
+final class HomeUsersFailed extends HomeUsersState {
+  final String failedMessage;
+
+  HomeUsersFailed({required this.failedMessage});
 }
-final class HomeSuccess extends HomeState {
-  final List<UserModel> usersContact ;
 
-  HomeSuccess({required this.usersContact});
+final class HomeUsersSuccess extends HomeUsersState {
+  final List<UserModel> usersContact;
+  HomeUsersSuccess({ required this.usersContact,});
+}
 
-}final class HomeSearchSuccess extends HomeState {
-  final List<UserModel> searchedContacts ;
+final class HomeSearchSuccess extends HomeUsersState {
+  final List<UserModel> searchedContacts;
 
   HomeSearchSuccess({required this.searchedContacts});
-
 }
+
+
